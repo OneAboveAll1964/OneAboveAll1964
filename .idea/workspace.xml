@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10e6ce42-b9a9-43d2-b4e7-d72b362930ec" name="Changes" comment="" />
+    <list default="true" id="10e6ce42-b9a9-43d2-b4e7-d72b362930ec" name="Changes" comment="Updated light_mode.svg and dark_mode.svg to improve styling consistency and spacing alignment. Removed placeholder ASCII art and redundant metadata for cleaner SVG outputs." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,12 +19,12 @@
     &quot;assignee&quot;: &quot;ShkoMaghdidEbrahim&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Andrew6rant/Andrew6rant.git&quot;,
-    &quot;accountId&quot;: &quot;6e6203ad-02eb-488c-92d7-cabcd94e174f&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ShkoMaghdidEbrahim/ShkoMaghdidEbrahim.git",
+    "accountId": "6e6203ad-02eb-488c-92d7-cabcd94e174f"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -33,21 +33,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -68,10 +69,33 @@
       <updated>1765312149852</updated>
       <workItem from="1765312151206" duration="1505000" />
       <workItem from="1765314236389" duration="36000" />
+      <workItem from="1765314275334" duration="537000" />
     </task>
+    <task id="LOCAL-00001" summary="Add GitHub profile README with dynamic SVG stats and migration settings&#10;&#10;- Created `.idea` configuration files for migration services with &quot;COMPLETED&quot; status.&#10;- Added `README.md` with light/dark mode SVGs.&#10;- Implemented `today.py` script for dynamic stat generation via GitHub GraphQL.&#10;- Included additional resources: cache, requirements, and inspection profiles.">
+      <option name="closed" value="true" />
+      <created>1765314316381</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1765314316381</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Updated light_mode.svg and dark_mode.svg to improve styling consistency and spacing alignment. Removed placeholder ASCII art and redundant metadata for cleaner SVG outputs.">
+      <option name="closed" value="true" />
+      <created>1765314665274</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1765314665274</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add GitHub profile README with dynamic SVG stats and migration settings&#10;&#10;- Created `.idea` configuration files for migration services with &quot;COMPLETED&quot; status.&#10;- Added `README.md` with light/dark mode SVGs.&#10;- Implemented `today.py` script for dynamic stat generation via GitHub GraphQL.&#10;- Included additional resources: cache, requirements, and inspection profiles." />
+    <MESSAGE value="Updated light_mode.svg and dark_mode.svg to improve styling consistency and spacing alignment. Removed placeholder ASCII art and redundant metadata for cleaner SVG outputs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated light_mode.svg and dark_mode.svg to improve styling consistency and spacing alignment. Removed placeholder ASCII art and redundant metadata for cleaner SVG outputs." />
   </component>
 </project>
