@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10e6ce42-b9a9-43d2-b4e7-d72b362930ec" name="Changes" comment="Updated light_mode.svg and dark_mode.svg to improve styling consistency and spacing alignment. Removed placeholder ASCII art and redundant metadata for cleaner SVG outputs." />
+    <list default="true" id="10e6ce42-b9a9-43d2-b4e7-d72b362930ec" name="Changes" comment="Add manual workflow dispatch trigger to GitHub Actions build configuration">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/build.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dark_mode.svg" beforeDir="false" afterPath="$PROJECT_DIR$/dark_mode.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/light_mode.svg" beforeDir="false" afterPath="$PROJECT_DIR$/light_mode.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today.py" beforeDir="false" afterPath="$PROJECT_DIR$/today.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,12 +26,12 @@
     &quot;assignee&quot;: &quot;ShkoMaghdidEbrahim&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ShkoMaghdidEbrahim/ShkoMaghdidEbrahim.git",
-    "accountId": "6e6203ad-02eb-488c-92d7-cabcd94e174f"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ShkoMaghdidEbrahim/ShkoMaghdidEbrahim.git&quot;,
+    &quot;accountId&quot;: &quot;6e6203ad-02eb-488c-92d7-cabcd94e174f&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
@@ -37,6 +44,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
@@ -45,6 +53,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
@@ -69,7 +78,7 @@
       <updated>1765312149852</updated>
       <workItem from="1765312151206" duration="1505000" />
       <workItem from="1765314236389" duration="36000" />
-      <workItem from="1765314275334" duration="537000" />
+      <workItem from="1765314275334" duration="4252000" />
     </task>
     <task id="LOCAL-00001" summary="Add GitHub profile README with dynamic SVG stats and migration settings&#10;&#10;- Created `.idea` configuration files for migration services with &quot;COMPLETED&quot; status.&#10;- Added `README.md` with light/dark mode SVGs.&#10;- Implemented `today.py` script for dynamic stat generation via GitHub GraphQL.&#10;- Included additional resources: cache, requirements, and inspection profiles.">
       <option name="closed" value="true" />
@@ -87,15 +96,45 @@
       <option name="project" value="LOCAL" />
       <updated>1765314665274</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add GitHub Actions workflow for README updates and update `.idea` configuration&#10;&#10;- Created `build.yaml` to automate README updates on `main` branch pushes and nightly schedules.&#10;- Updated `.idea` files for additional Git integrations and migration settings.">
+      <option name="closed" value="true" />
+      <created>1765314892603</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1765314892604</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add manual workflow dispatch trigger to GitHub Actions build configuration">
+      <option name="closed" value="true" />
+      <created>1765315180693</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1765315180693</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add GitHub profile README with dynamic SVG stats and migration settings&#10;&#10;- Created `.idea` configuration files for migration services with &quot;COMPLETED&quot; status.&#10;- Added `README.md` with light/dark mode SVGs.&#10;- Implemented `today.py` script for dynamic stat generation via GitHub GraphQL.&#10;- Included additional resources: cache, requirements, and inspection profiles." />
     <MESSAGE value="Updated light_mode.svg and dark_mode.svg to improve styling consistency and spacing alignment. Removed placeholder ASCII art and redundant metadata for cleaner SVG outputs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated light_mode.svg and dark_mode.svg to improve styling consistency and spacing alignment. Removed placeholder ASCII art and redundant metadata for cleaner SVG outputs." />
+    <MESSAGE value="Add GitHub Actions workflow for README updates and update `.idea` configuration&#10;&#10;- Created `build.yaml` to automate README updates on" />
+    <MESSAGE value="Add GitHub Actions workflow for README updates and update `.idea` configuration&#10;&#10;- Created `build.yaml` to automate README updates on `main` branch pushes and nightly schedules.&#10;- Updated `.idea` files for additional Git integrations and migration settings." />
+    <MESSAGE value="Add manual workflow dispatch trigger to GitHub Actions build configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add manual workflow dispatch trigger to GitHub Actions build configuration" />
   </component>
 </project>
