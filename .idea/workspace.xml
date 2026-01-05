@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10e6ce42-b9a9-43d2-b4e7-d72b362930ec" name="Changes" comment="Update GitHub Actions cron schedule to 9 PM daily">
-      <change beforePath="$PROJECT_DIR$/cache/a68e9215ba6e42b40af3740929c6a2c2a981042aedb7f562d01af16808510107.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cache/a68e9215ba6e42b40af3740929c6a2c2a981042aedb7f562d01af16808510107.txt" afterDir="false" />
+    <list default="true" id="10e6ce42-b9a9-43d2-b4e7-d72b362930ec" name="Changes" comment="Update committers data, LOC stats, and adjust rank integration in cache and SVG files">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_18_25,_7_42 PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_18_25__7_42PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dark_mode.svg" beforeDir="false" afterPath="$PROJECT_DIR$/dark_mode.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/light_mode.svg" beforeDir="false" afterPath="$PROJECT_DIR$/light_mode.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/today.py" beforeDir="false" afterPath="$PROJECT_DIR$/today.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,6 +79,8 @@
       <workItem from="1765314236389" duration="36000" />
       <workItem from="1765314275334" duration="5034000" />
       <workItem from="1766075361887" duration="1378000" />
+      <workItem from="1767618735062" duration="9000" />
+      <workItem from="1767618778153" duration="1090000" />
     </task>
     <task id="LOCAL-00001" summary="Add GitHub profile README with dynamic SVG stats and migration settings&#10;&#10;- Created `.idea` configuration files for migration services with &quot;COMPLETED&quot; status.&#10;- Added `README.md` with light/dark mode SVGs.&#10;- Implemented `today.py` script for dynamic stat generation via GitHub GraphQL.&#10;- Included additional resources: cache, requirements, and inspection profiles.">
       <option name="closed" value="true" />
@@ -183,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766076769584</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Update committers data, LOC stats, and adjust rank integration in cache and SVG files">
+      <option name="closed" value="true" />
+      <created>1767617658513</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1767617658513</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -217,6 +228,8 @@
     <MESSAGE value="Add ranking integration from committers.top into README and GitHub profile visuals&#10;&#10;- Implemented `committers_rank_getter` to fetch and process user ranking from committers.top.&#10;- Updated `today.py` to replace star stats with ranking in visual output.&#10;- Refined `svg_overwrite` to support rank data rendering.&#10;- Improved README links and visuals for updated repo name and profile graphics." />
     <MESSAGE value="Corrected email formatting in `light_mode.svg` and `dark_mode.svg` for consistency." />
     <MESSAGE value="Update GitHub Actions cron schedule to 9 PM daily" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update GitHub Actions cron schedule to 9 PM daily" />
+    <MESSAGE value="Update commits data and LOC stats in `.idea`, cache, and SVG files" />
+    <MESSAGE value="Update committers data, LOC stats, and adjust rank integration in cache and SVG files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update committers data, LOC stats, and adjust rank integration in cache and SVG files" />
   </component>
 </project>
