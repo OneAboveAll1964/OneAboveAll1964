@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10e6ce42-b9a9-43d2-b4e7-d72b362930ec" name="Changes" comment="Update GitHub Actions cron schedule to 9 PM daily" />
+    <list default="true" id="10e6ce42-b9a9-43d2-b4e7-d72b362930ec" name="Changes" comment="Update GitHub Actions cron schedule to 9 PM daily">
+      <change beforePath="$PROJECT_DIR$/cache/a68e9215ba6e42b40af3740929c6a2c2a981042aedb7f562d01af16808510107.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cache/a68e9215ba6e42b40af3740929c6a2c2a981042aedb7f562d01af16808510107.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dark_mode.svg" beforeDir="false" afterPath="$PROJECT_DIR$/dark_mode.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/light_mode.svg" beforeDir="false" afterPath="$PROJECT_DIR$/light_mode.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/today.py" beforeDir="false" afterPath="$PROJECT_DIR$/today.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -261,7 +261,7 @@ def stars_counter(data):
 
 
 def committers_rank_getter(username, country='iraq'):
-    url = f"https://user-badge.committers.top/{country}/{username}.svg"
+    url = f"https://user-badge.committers.top/{country}_private/{username}.svg"
     response = requests.get(url, timeout=15)
     if response.status_code != 200:
         raise Exception('committers_rank_getter has failed with a', response.status_code, response.text)
@@ -269,6 +269,7 @@ def committers_rank_getter(username, country='iraq'):
 
 
 def extract_rank_from_committers_svg(svg_text):
+    print(svg_text)
     if re.search(r"\bunranked\b", svg_text, flags=re.IGNORECASE):
         return 'Unranked'
 
