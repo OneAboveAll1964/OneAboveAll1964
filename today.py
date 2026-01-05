@@ -37,16 +37,24 @@ def simple_request(func_name, query, variables):
 
 def fetch_streak(username):
     """
-    Fetches GitHub streak data from a community API.
-    Handles failures gracefully with retries.
+    Fetches GitHub streak data.
+    The API returns an SVG; we parse the 'Current Streak' value from the XML.
     """
     url = f"https://github-readme-streak-stats.herokuapp.com/?user={username}&format=json"
     for delay in [1, 2, 4]:
         try:
-            response = requests.get(url, timeout=10)
+            response = requests.get(url, timeout=15)
             if response.status_code == 200:
-                data = response.json()
-                return str(data.get("currentStreak", {}).get("length", "0"))
+                svg_text = response.text
+                # The "Current Streak" big number is inside a <text> element
+                # that has the 'currstreak' animation style applied to it.
+                # We use a non-greedy match to find the first occurrence of the number
+                # inside a text tag specifically associated with that animation.
+                match = re.search(r"style=['\"]animation:\s*currstreak[^>]*>[\s\n]*([0-9,]+)[\s\n]*</text>", svg_text,
+                                  re.DOTALL)
+
+                if match:
+                    return match.group(1).strip()
         except Exception:
             time.sleep(delay)
     return "N/A"
@@ -302,7 +310,8 @@ def extract_rank_from_committers_svg(svg_text):
     return 'Unranked'
 
 
-def svg_overwrite(filename, age_data, commit_data, streak_data, rank_data, repo_data, contrib_data, follower_data, loc_data):
+def svg_overwrite(filename, age_data, commit_data, streak_data, rank_data, repo_data, contrib_data, follower_data,
+                  loc_data):
     tree = etree.parse(filename)
     root = tree.getroot()
 
@@ -400,9 +409,11 @@ if __name__ == '__main__':
         '{:,}'.format(total_loc[2])
     ]
 
-    svg_overwrite('dark_mode.svg', age_data, commit_data, streak_data, rank_data, repo_data, contrib_data, follower_data,
+    svg_overwrite('dark_mode.svg', age_data, commit_data, streak_data, rank_data, repo_data, contrib_data,
+                  follower_data,
                   loc_formatted)
-    svg_overwrite('light_mode.svg', age_data, commit_data, streak_data, rank_data, repo_data, contrib_data, follower_data,
+    svg_overwrite('light_mode.svg', age_data, commit_data, streak_data, rank_data, repo_data, contrib_data,
+                  follower_data,
                   loc_formatted)
 
     print('Total GitHub GraphQL API calls:', sum(QUERY_COUNT.values()))
