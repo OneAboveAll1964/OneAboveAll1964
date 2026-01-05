@@ -8,6 +8,7 @@
         .label { font: bold 12px 'Inter', sans-serif; fill: #79747E; text-transform: uppercase; letter-spacing: 1px; }
         .mono { font: 500 14px 'Roboto Mono', monospace; fill: #1C1B1F; }
         .stat-value { font: bold 64px 'Roboto Mono', monospace; fill: #21005D; }
+        .streak-value { font: bold 48px 'Roboto Mono', monospace; fill: #1B5E20; }
         .chip-bg { fill: #E7E0EC; stroke: #CAC4D0; stroke-width: 1; }
         .chip-bg-ide { fill: #EADDFF; stroke: #6750A4; stroke-width: 1; }
         .chip-text { font: 500 12px 'Inter', sans-serif; fill: #49454F; }
@@ -18,8 +19,8 @@
     <!-- Background -->
     <rect width="985" height="580" rx="28" fill="#FFFBFE"/>
 
-    <!-- Header Card -->
-    <rect x="24" y="24" width="630" height="180" rx="24" fill="#F3EDF7"/>
+    <!-- Header Card (Shortened to make room for Streak) -->
+    <rect x="24" y="24" width="450" height="180" rx="24" fill="#F3EDF7"/>
     <circle cx="72" cy="72" r="32" fill="url(#avatarGradientLight)"/>
     <text x="54" y="81" font-family="Inter" style="font: bold 24px 'Inter', sans-serif; fill: #FFFFFF;" font-weight="bold">SM</text>
 
@@ -41,11 +42,17 @@
         <text x="237" y="17" class="chip-text" style="fill: #21005D;">Webstorm IDE</text>
     </g>
 
+    <!-- Streak Card (New) -->
+    <rect x="494" y="24" width="220" height="180" rx="24" fill="#E8F5E9" stroke="#C8E6C9" stroke-width="1"/>
+    <text x="518" y="55" class="label" fill="#1B5E20">Current Streak</text>
+    <text x="518" y="140" id="streak_data" class="streak-value">API Failed</text>
+    <text x="518" y="170" class="body-text" fill="#1B5E20" font-size="12">Consecutive Days</text>
+
     <!-- Rank Card -->
-    <rect x="674" y="24" width="287" height="180" rx="24" fill="#EADDFF"/>
-    <text x="700" y="55" class="label" fill="#21005D" fill-opacity="0.7">GitHub Global Rank</text>
-    <text x="700" y="140" id="rank_data" class="stat-value">#34</text>
-    <text x="700" y="170" class="body-text" fill="#21005D" font-size="12">Top Contributor Milestone</text>
+    <rect x="734" y="24" width="227" height="180" rx="24" fill="#EADDFF"/>
+    <text x="754" y="55" class="label" fill="#21005D" fill-opacity="0.7">Global Rank</text>
+    <text x="754" y="140" id="rank_data" class="stat-value" style="font-size: 54px;">#34</text>
+    <text x="754" y="170" class="body-text" fill="#21005D" font-size="12">Top Contributor</text>
 
     <!-- Tech Stack Card -->
     <rect x="24" y="224" width="550" height="260" rx="24" stroke="#CAC4D0" stroke-width="1" fill="#FFFBFE"/>
@@ -72,27 +79,28 @@
     <!-- LOC Card -->
     <rect x="594" y="344" width="367" height="140" rx="24" fill="#F3EDF7"/>
     <text x="618" y="390" class="label">Total Lines of Code</text>
-    <text x="943" y="390" text-anchor="end" id="loc_data" class="mono" font-size="20">394,474</text>
+    <text x="943" y="390" text-anchor="end" id="loc_data" class="mono" font-size="20">394,587</text>
 
     <rect x="618" y="410" width="319" height="12" rx="6" fill="#E7E0EC"/>
     <rect x="618" y="410" width="260" height="12" rx="6" fill="#6750A4"/>
 
-    <text x="618" y="450" id="loc_add" class="mono add-color" font-size="11">++ 468,348</text>
-    <text x="943" y="450" text-anchor="end" id="loc_del" class="mono del-color" font-size="11">-- 73,874</text>
+    <text x="618" y="450" id="loc_add" class="mono add-color" font-size="11">++ 468,734</text>
+    <text x="943" y="450" text-anchor="end" id="loc_del" class="mono del-color" font-size="11">-- 74,147</text>
 
     <!-- Footer -->
     <rect x="24" y="504" width="937" height="52" rx="16" fill="#E7E0EC"/>
     <text x="48" y="535" class="body-text" font-weight="500" font-size="12">Shkoma.ranya@gmail.com | LinkedIn: Shko Maghdid</text>
-    <text x="940" y="535" text-anchor="end" id="commit_data" class="mono" font-size="12" fill-opacity="0.6">Commits: 2416</text>
+    <text x="940" y="535" text-anchor="end" id="commit_data" class="mono" font-size="12" fill-opacity="0.6">Commits: 2420</text>
 
     <!-- Hidden / script-required elements -->
     <text id="follower_data" display="none">12</text>
-    <text id="age_data_dots" display="none"> ............................................................ </text>
-    <text id="commit_data_dots" display="none"> ................................ </text>
-    <text id="rank_data_dots" display="none"> ................. </text>
-    <text id="repo_data_dots" display="none"> .................... </text>
-    <text id="follower_data_dots" display="none"> ................................ </text>
-    <text id="loc_data_dots" display="none"> ........................................ </text>
+    <text id="age_data_dots" display="none"> . </text>
+    <text id="commit_data_dots" display="none"> . </text>
+    <text id="rank_data_dots" display="none"> . </text>
+    <text id="repo_data_dots" display="none"> . </text>
+    <text id="follower_data_dots" display="none"> . </text>
+    <text id="loc_data_dots" display="none"> . </text>
+    <text id="streak_data_dots" display="none"> . </text>
 
     <defs>
         <linearGradient id="avatarGradientLight" x1="0%" y1="0%" x2="100%" y2="100%">

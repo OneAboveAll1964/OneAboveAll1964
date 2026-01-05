@@ -35,6 +35,23 @@ def simple_request(func_name, query, variables):
     raise Exception(func_name, ' has failed with a', request.status_code, request.text, QUERY_COUNT)
 
 
+def fetch_streak(username):
+    """
+    Fetches GitHub streak data from a community API.
+    Handles failures gracefully with retries.
+    """
+    url = f"https://github-readme-streak-stats.herokuapp.com/?user={username}&format=json"
+    for delay in [1, 2, 4]:
+        try:
+            response = requests.get(url, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                return str(data.get("currentStreak", {}).get("length", "0"))
+        except Exception:
+            time.sleep(delay)
+    return "N/A"
+
+
 def graph_commits():
     query_count('graph_commits')
     query = '''
@@ -285,18 +302,19 @@ def extract_rank_from_committers_svg(svg_text):
     return 'Unranked'
 
 
-def svg_overwrite(filename, age_data, commit_data, rank_data, repo_data, contrib_data, follower_data, loc_data):
+def svg_overwrite(filename, age_data, commit_data, streak_data, rank_data, repo_data, contrib_data, follower_data, loc_data):
     tree = etree.parse(filename)
     root = tree.getroot()
 
-    # Standard formats (Overwriting standard text)
+    # Standard formats
     justify_format(root, 'age_data', age_data, 0)
     justify_format(root, 'repo_data', repo_data, 0)
     justify_format(root, 'contrib_data', contrib_data, 0)
     justify_format(root, 'follower_data', follower_data, 0)
     justify_format(root, 'loc_data', loc_data[2], 0)
+    justify_format(root, 'streak_data', streak_data, 0)
 
-    # Custom Prefixes (Keeps symbols and labels)
+    # Custom Prefixes
     justify_format(root, 'commit_data', f"Commits: {commit_data}", 0)
     justify_format(root, 'rank_data', f"#{rank_data}", 0)
     justify_format(root, 'loc_add', f"++ {loc_data[0]}", 0)
@@ -358,7 +376,7 @@ def formatter(query_type, difference):
 
 
 if __name__ == '__main__':
-    print('Calculation times:')
+    print('Starting stats update...')
     OWNER_ID, acc_date = user_getter(USER_NAME)
     formatter('account data', 0)
 
@@ -369,6 +387,7 @@ if __name__ == '__main__':
     formatter('LOC (cached)', loc_time)
 
     commit_data, _ = perf_counter(graph_commits)
+    streak_data, _ = perf_counter(fetch_streak, USER_NAME)
     rank_data, _ = perf_counter(committers_rank_getter, USER_NAME)
     repo_data, _ = perf_counter(graph_repos_stars, 'repos', ['OWNER'])
     contrib_data, _ = perf_counter(graph_repos_stars, 'repos', ['OWNER', 'COLLABORATOR', 'ORGANIZATION_MEMBER'])
@@ -381,9 +400,9 @@ if __name__ == '__main__':
         '{:,}'.format(total_loc[2])
     ]
 
-    svg_overwrite('dark_mode.svg', age_data, commit_data, rank_data, repo_data, contrib_data, follower_data,
+    svg_overwrite('dark_mode.svg', age_data, commit_data, streak_data, rank_data, repo_data, contrib_data, follower_data,
                   loc_formatted)
-    svg_overwrite('light_mode.svg', age_data, commit_data, rank_data, repo_data, contrib_data, follower_data,
+    svg_overwrite('light_mode.svg', age_data, commit_data, streak_data, rank_data, repo_data, contrib_data, follower_data,
                   loc_formatted)
 
     print('Total GitHub GraphQL API calls:', sum(QUERY_COUNT.values()))
