@@ -2,6 +2,8 @@
 
 This GitHub README uses an **SVG** that updates **daily at 12:00 AM** via **GitHub Actions**.
 
+The design is inspired by Googles **Material 3 Expressive Design System**.
+
 The scheduled workflow runs the `today.py` script, which:
 - Calls various **GitHub API** endpoints
 - Fetches the latest data
