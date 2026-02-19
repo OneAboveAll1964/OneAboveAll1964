@@ -208,7 +208,8 @@ def loc_query(owner_affiliation, comment_size=0, force_cache=False, cursor=None,
         variables = {'owner_affiliation': owner_affiliation, 'login': USER_NAME, 'cursor': cursor}
         request = simple_request(loc_query.__name__, query, variables)
         repo_data = request.json()['data']['user']['repositories']
-        edges += repo_data['edges']
+        edges += [e for e in repo_data['edges']
+                  if e and e.get('node') and e['node']['nameWithOwner'] not in EXCLUDED_REPOS]
         if not repo_data['pageInfo']['hasNextPage']:
             return cache_builder(edges, comment_size, force_cache)
         cursor = repo_data['pageInfo']['endCursor']
