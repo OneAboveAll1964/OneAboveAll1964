@@ -325,7 +325,8 @@ def svg_overwrite(filename, age_data, commit_data, streak_data, rank_data, repo_
     justify_format(root, 'streak_data', streak_data, 0)
 
     # Custom Prefixes
-    justify_format(root, 'commit_data', f"Commits: {commit_data}", 0)
+    # Add 10 to accommodate for the 10 commits done in the excluded repos which are too large to parse
+    justify_format(root, 'commit_data', f"Commits: {commit_data + 10}", 0)
     justify_format(root, 'rank_data', f"#{rank_data}", 0)
     justify_format(root, 'loc_add', f"++ {loc_data[0]}", 0)
     justify_format(root, 'loc_del', f"-- {loc_data[1]}", 0)
