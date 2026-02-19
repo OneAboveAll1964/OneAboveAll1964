@@ -12,7 +12,7 @@ HEADERS = {'authorization': 'token ' + os.environ['ACCESS_TOKEN']}
 USER_NAME = os.environ['USER_NAME']
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0,
                'loc_query': 0}
-EXCLUDED_REPOS = {'is-a-dev/register', 'is-a-good-dev/register'}
+EXCLUDED_REPOS = {'is-a-dev/register', 'OneAboveAll1964/register', 'is-a-good-dev/register', 'OneAboveAll1964/register-is-a-good-dev'}
 
 
 def daily_readme(birthday):
@@ -218,6 +218,7 @@ def loc_query(owner_affiliation, comment_size=0, force_cache=False, cursor=None,
 def cache_builder(edges, comment_size, force_cache, loc_add=0, loc_del=0):
     edges = [e for e in edges if e is not None and e.get('node') is not None
              and e['node']['nameWithOwner'] not in EXCLUDED_REPOS]
+    print(edges)
     filename = 'cache/' + hashlib.sha256(USER_NAME.encode('utf-8')).hexdigest() + '.txt'
 
     if not os.path.exists('cache'):
