@@ -27,8 +27,8 @@
     <text x="120" y="65" class="title">Shko Maghdid</text>
     <text x="120" y="90" class="subtitle">Fullstack Engineer @ Lezzoo</text>
 
-    <text x="50" y="135" class="body-text">Uptime:</text>
-    <text x="110" y="135" id="age_data" class="mono">23 years, 1 month, 5 days</text>
+<!--    <text x="50" y="135" class="body-text">Uptime:</text>-->
+<!--    <text x="110" y="135" id="age_data" class="mono">23 years, 1 month, 5 days</text>-->
 
     <!-- OS Chips -->
     <g transform="translate(50, 160)">
