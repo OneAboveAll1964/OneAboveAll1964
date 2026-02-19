@@ -112,7 +112,7 @@ def graph_repos_stars(count_type, owner_affiliation, cursor=None):
 
 
 def recursive_loc(owner, repo_name, data, cache_comment, addition_total=0, deletion_total=0, my_commits=0, cursor=None):
-    query_count('recursive_loc')
+    global OWNER_ID
     query = '''
     query ($repo_name: String!, $owner: String!, $cursor: String) {
         repository(name: $repo_name, owner: $owner) {
@@ -145,40 +145,36 @@ def recursive_loc(owner, repo_name, data, cache_comment, addition_total=0, delet
             }
         }
     }'''
-    variables = {'repo_name': repo_name, 'owner': owner, 'cursor': cursor}
-    request = requests.post('https://api.github.com/graphql', json={'query': query, 'variables': variables},
-                            headers=HEADERS)
-    if request.status_code == 200:
-        if request.json()['data']['repository']['defaultBranchRef'] != None:
-            return loc_counter_one_repo(owner, repo_name, data, cache_comment,
-                                        request.json()['data']['repository']['defaultBranchRef']['target']['history'],
-                                        addition_total, deletion_total, my_commits)
-        else:
+    while True:
+        query_count('recursive_loc')
+        variables = {'repo_name': repo_name, 'owner': owner, 'cursor': cursor}
+        request = requests.post('https://api.github.com/graphql', json={'query': query, 'variables': variables},
+                                headers=HEADERS)
+        if request.status_code != 200:
+            force_close_file(data, cache_comment)
+            if request.status_code == 403:
+                raise Exception(
+                    'Too many requests in a short amount of time!\nYou\'ve hit the non-documented anti-abuse limit!')
+            raise Exception('recursive_loc() has failed with a', request.status_code, request.text, QUERY_COUNT)
+
+        if request.json()['data']['repository']['defaultBranchRef'] is None:
             return 0
-    force_close_file(data, cache_comment)
-    if request.status_code == 403:
-        raise Exception(
-            'Too many requests in a short amount of time!\nYou\'ve hit the non-documented anti-abuse limit!')
-    raise Exception('recursive_loc() has failed with a', request.status_code, request.text, QUERY_COUNT)
+
+        history = request.json()['data']['repository']['defaultBranchRef']['target']['history']
+        for node in history['edges']:
+            if node['node']['author']['user'] and node['node']['author']['user']['id'] == OWNER_ID:
+                my_commits += 1
+                addition_total += node['node']['additions']
+                deletion_total += node['node']['deletions']
+
+        if not history['edges'] or not history['pageInfo']['hasNextPage']:
+            return addition_total, deletion_total, my_commits
+        cursor = history['pageInfo']['endCursor']
 
 
-def loc_counter_one_repo(owner, repo_name, data, cache_comment, history, addition_total, deletion_total, my_commits):
-    global OWNER_ID
-    for node in history['edges']:
-        if node['node']['author']['user'] and node['node']['author']['user']['id'] == OWNER_ID:
-            my_commits += 1
-            addition_total += node['node']['additions']
-            deletion_total += node['node']['deletions']
-
-    if history['edges'] == [] or not history['pageInfo']['hasNextPage']:
-        return addition_total, deletion_total, my_commits
-    else:
-        return recursive_loc(owner, repo_name, data, cache_comment, addition_total, deletion_total, my_commits,
-                             history['pageInfo']['endCursor'])
-
-
-def loc_query(owner_affiliation, comment_size=0, force_cache=False, cursor=None, edges=[]):
-    query_count('loc_query')
+def loc_query(owner_affiliation, comment_size=0, force_cache=False, cursor=None, edges=None):
+    if edges is None:
+        edges = []
     query = '''
     query ($owner_affiliation: [RepositoryAffiliation], $login: String!, $cursor: String) {
         user(login: $login) {
@@ -206,14 +202,15 @@ def loc_query(owner_affiliation, comment_size=0, force_cache=False, cursor=None,
             }
         }
     }'''
-    variables = {'owner_affiliation': owner_affiliation, 'login': USER_NAME, 'cursor': cursor}
-    request = simple_request(loc_query.__name__, query, variables)
-    if request.json()['data']['user']['repositories']['pageInfo']['hasNextPage']:
-        edges += request.json()['data']['user']['repositories']['edges']
-        return loc_query(owner_affiliation, comment_size, force_cache,
-                         request.json()['data']['user']['repositories']['pageInfo']['endCursor'], edges)
-    else:
-        return cache_builder(edges + request.json()['data']['user']['repositories']['edges'], comment_size, force_cache)
+    while True:
+        query_count('loc_query')
+        variables = {'owner_affiliation': owner_affiliation, 'login': USER_NAME, 'cursor': cursor}
+        request = simple_request(loc_query.__name__, query, variables)
+        repo_data = request.json()['data']['user']['repositories']
+        edges += repo_data['edges']
+        if not repo_data['pageInfo']['hasNextPage']:
+            return cache_builder(edges, comment_size, force_cache)
+        cursor = repo_data['pageInfo']['endCursor']
 
 
 def cache_builder(edges, comment_size, force_cache, loc_add=0, loc_del=0):
@@ -293,7 +290,7 @@ def stars_counter(data):
     return total_stars
 
 
-def committers_rank_getter(username, country='iraq'):
+def committers_rank_getter(username, country='kurdistan'):
     url = f"https://user-badge.committers.top/{country}_private/{username}.svg"
     response = requests.get(url, timeout=15)
     if response.status_code != 200:

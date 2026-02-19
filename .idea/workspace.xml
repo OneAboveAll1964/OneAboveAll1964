@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10e6ce42-b9a9-43d2-b4e7-d72b362930ec" name="Changes" comment="Add GitHub streak data integration and update LOC stats, commit counts, and SVG visuals">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="10e6ce42-b9a9-43d2-b4e7-d72b362930ec" name="Changes" comment="Update `HOWITWORKS.md` to include Material 3 design inspiration">
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_18_25,_7_42 PM_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cache/a68e9215ba6e42b40af3740929c6a2c2a981042aedb7f562d01af16808510107.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cache/a68e9215ba6e42b40af3740929c6a2c2a981042aedb7f562d01af16808510107.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dark_mode.svg" beforeDir="false" afterPath="$PROJECT_DIR$/dark_mode.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/light_mode.svg" beforeDir="false" afterPath="$PROJECT_DIR$/light_mode.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/today.py" beforeDir="false" afterPath="$PROJECT_DIR$/today.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,7 +80,9 @@
       <workItem from="1767618735062" duration="9000" />
       <workItem from="1767618778153" duration="1552000" />
       <workItem from="1767620367086" duration="4000" />
-      <workItem from="1767620386343" duration="2851000" />
+      <workItem from="1767620386343" duration="3800000" />
+      <workItem from="1767887860405" duration="728000" />
+      <workItem from="1771486923695" duration="183000" />
     </task>
     <task id="LOCAL-00001" summary="Add GitHub profile README with dynamic SVG stats and migration settings&#10;&#10;- Created `.idea` configuration files for migration services with &quot;COMPLETED&quot; status.&#10;- Added `README.md` with light/dark mode SVGs.&#10;- Implemented `today.py` script for dynamic stat generation via GitHub GraphQL.&#10;- Included additional resources: cache, requirements, and inspection profiles.">
       <option name="closed" value="true" />
@@ -222,7 +220,47 @@
       <option name="project" value="LOCAL" />
       <updated>1767622855795</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Add GitHub streak feature and update LOC, commits, and SVG stats">
+      <option name="closed" value="true" />
+      <created>1767623800612</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1767623800612</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Update GitHub streak, LOC stats, commit counts, and SVG visuals for light and dark modes">
+      <option name="closed" value="true" />
+      <created>1767624168423</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1767624168423</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Update GitHub streak API endpoint in `today.py`">
+      <option name="closed" value="true" />
+      <created>1767887973705</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1767887973705</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Update gradients in `light_mode.svg` and `dark_mode.svg` to unify color stops">
+      <option name="closed" value="true" />
+      <created>1767888174201</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1767888174201</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Update `HOWITWORKS.md` to include Material 3 design inspiration">
+      <option name="closed" value="true" />
+      <created>1767888468930</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1767888468930</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,6 +298,11 @@
     <MESSAGE value="Update committers data, LOC stats, and adjust rank integration in cache and SVG files" />
     <MESSAGE value="Update LOC stats, commit counts, and visuals in `today.py`, cache, `.idea`, and SVG files" />
     <MESSAGE value="Add GitHub streak data integration and update LOC stats, commit counts, and SVG visuals" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add GitHub streak data integration and update LOC stats, commit counts, and SVG visuals" />
+    <MESSAGE value="Add GitHub streak feature and update LOC, commits, and SVG stats" />
+    <MESSAGE value="Update GitHub streak, LOC stats, commit counts, and SVG visuals for light and dark modes" />
+    <MESSAGE value="Update GitHub streak API endpoint in `today.py`" />
+    <MESSAGE value="Update gradients in `light_mode.svg` and `dark_mode.svg` to unify color stops" />
+    <MESSAGE value="Update `HOWITWORKS.md` to include Material 3 design inspiration" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update `HOWITWORKS.md` to include Material 3 design inspiration" />
   </component>
 </project>
