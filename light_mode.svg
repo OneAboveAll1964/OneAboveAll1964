@@ -51,7 +51,7 @@
     <!-- Rank Card -->
     <rect x="734" y="24" width="227" height="180" rx="24" fill="#EADDFF"/>
     <text x="754" y="55" class="label" fill="#21005D" fill-opacity="0.7">Global Rank</text>
-    <text x="754" y="140" id="rank_data" class="stat-value" style="font-size: 54px;">#21</text>
+    <text x="754" y="140" id="rank_data" class="stat-value" style="font-size: 54px;">#17</text>
     <text x="754" y="170" class="body-text" fill="#21005D" font-size="12">Top Contributor</text>
 
     <!-- Tech Stack Card -->
@@ -79,18 +79,18 @@
     <!-- LOC Card -->
     <rect x="594" y="344" width="367" height="140" rx="24" fill="#F3EDF7"/>
     <text x="618" y="390" class="label">Total Lines of Code</text>
-    <text x="943" y="390" text-anchor="end" id="loc_data" class="mono" font-size="20">665,542</text>
+    <text x="943" y="390" text-anchor="end" id="loc_data" class="mono" font-size="20">587,822</text>
 
     <rect x="618" y="410" width="319" height="12" rx="6" fill="#E7E0EC"/>
     <rect x="618" y="410" width="260" height="12" rx="6" fill="#6750A4"/>
 
-    <text x="618" y="450" id="loc_add" class="mono add-color" font-size="11">++ 795,690</text>
-    <text x="943" y="450" text-anchor="end" id="loc_del" class="mono del-color" font-size="11">-- 130,148</text>
+    <text x="618" y="450" id="loc_add" class="mono add-color" font-size="11">++ 802,803</text>
+    <text x="943" y="450" text-anchor="end" id="loc_del" class="mono del-color" font-size="11">-- 214,981</text>
 
     <!-- Footer -->
     <rect x="24" y="504" width="937" height="52" rx="16" fill="#E7E0EC"/>
     <text x="48" y="535" class="body-text" font-weight="500" font-size="12">Shkoma.ranya@gmail.com | LinkedIn: Shko Maghdid</text>
-    <text x="940" y="535" text-anchor="end" id="commit_data" class="mono" font-size="12" fill-opacity="0.6">Commits: 4364</text>
+    <text x="940" y="535" text-anchor="end" id="commit_data" class="mono" font-size="12" fill-opacity="0.6">Commits: 4427</text>
 
     <!-- Hidden / script-required elements -->
     <text id="follower_data" display="none">17</text>
