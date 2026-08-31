@@ -7,11 +7,10 @@ import time
 import hashlib
 import re
 
-# Configuration
 HEADERS = {'authorization': 'token ' + os.environ['ACCESS_TOKEN']}
 USER_NAME = os.environ['USER_NAME']
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0,
-               'loc_query': 0}
+               'graph_contribution_days': 0, 'loc_query': 0}
 EXCLUDED_REPOS = {'is-a-dev/register', 'OneAboveAll1964/register', 'is-a-good-dev/register', 'OneAboveAll1964/register-is-a-good-dev'}
 
 
@@ -36,29 +35,66 @@ def simple_request(func_name, query, variables):
     raise Exception(func_name, ' has failed with a', request.status_code, request.text, QUERY_COUNT)
 
 
-def fetch_streak(username):
+def graph_contribution_days(username, from_date, to_date):
     """
-    Fetches GitHub streak data.
-    The API returns an SVG; we parse the 'Current Streak' value from the XML.
+    Returns {'YYYY-MM-DD': contribution count} for the given range.
+    GitHub only allows one year per contributionsCollection query.
     """
-    url = f"https://github-readme-streak-stats-vijaypur.vercel.app/?user={username}"
-    for delay in [1, 2, 4]:
-        try:
-            response = requests.get(url, timeout=15)
-            if response.status_code == 200:
-                svg_text = response.text
-                # The "Current Streak" big number is inside a <text> element
-                # that has the 'currstreak' animation style applied to it.
-                # We use a non-greedy match to find the first occurrence of the number
-                # inside a text tag specifically associated with that animation.
-                match = re.search(r"style=['\"]animation:\s*currstreak[^>]*>[\s\n]*([0-9,]+)[\s\n]*</text>", svg_text,
-                                  re.DOTALL)
+    query_count('graph_contribution_days')
+    query = '''
+    query($login: String!, $from: DateTime!, $to: DateTime!) {
+        user(login: $login) {
+            contributionsCollection(from: $from, to: $to) {
+                contributionCalendar {
+                    weeks {
+                        contributionDays {
+                            date
+                            contributionCount
+                        }
+                    }
+                }
+            }
+        }
+    }'''
+    variables = {'login': username,
+                 'from': from_date.strftime('%Y-%m-%dT00:00:00Z'),
+                 'to': to_date.strftime('%Y-%m-%dT23:59:59Z')}
+    request = simple_request(graph_contribution_days.__name__, query, variables)
+    weeks = request.json()['data']['user']['contributionsCollection']['contributionCalendar']['weeks']
+    return {day['date']: day['contributionCount']
+            for week in weeks for day in week['contributionDays']}
 
-                if match:
-                    return match.group(1).strip()
-        except Exception:
-            time.sleep(delay)
-    return "N/A"
+
+def contribution_days_desc(username, account_created):
+    """Yields (date, contribution count) newest first, back to the signup date."""
+    window_end = datetime.datetime.utcnow().date()
+    while window_end >= account_created:
+        window_start = max(window_end - datetime.timedelta(days=364), account_created)
+        counts = graph_contribution_days(username, window_start, window_end)
+        day = window_end
+        while day >= window_start:
+            yield day, counts.get(day.isoformat(), 0)
+            day -= datetime.timedelta(days=1)
+        window_end = window_start - datetime.timedelta(days=1)
+
+
+def graph_streak(username, account_created):
+    """
+    Current streak of consecutive days with at least one contribution, read
+    straight from the GitHub contribution calendar so it doesn't depend on a
+    third-party service staying up.
+    """
+    streak = 0
+    try:
+        for index, (_, contributions) in enumerate(contribution_days_desc(username, account_created)):
+            if contributions > 0:
+                streak += 1
+            elif index > 0:
+                break
+    except Exception as error:
+        print('graph_streak() has failed:', error)
+        return 'N/A'
+    return streak
 
 
 def graph_commits():
@@ -316,7 +352,6 @@ def svg_overwrite(filename, age_data, commit_data, streak_data, rank_data, repo_
     tree = etree.parse(filename)
     root = tree.getroot()
 
-    # Standard formats
     justify_format(root, 'age_data', age_data, 0)
     justify_format(root, 'repo_data', repo_data, 0)
     justify_format(root, 'contrib_data', contrib_data, 0)
@@ -324,8 +359,7 @@ def svg_overwrite(filename, age_data, commit_data, streak_data, rank_data, repo_
     justify_format(root, 'loc_data', loc_data[2], 0)
     justify_format(root, 'streak_data', streak_data, 0)
 
-    # Custom Prefixes
-    # Add 10 to accommodate for the 2 commits done in the excluded repos which are too large to parse
+
     justify_format(root, 'commit_data', f"Commits: {commit_data + 2}", 0)
     justify_format(root, 'rank_data', f"#{rank_data}", 0)
     justify_format(root, 'loc_add', f"++ {loc_data[0]}", 0)
@@ -389,6 +423,7 @@ def formatter(query_type, difference):
 if __name__ == '__main__':
     print('Starting stats update...')
     OWNER_ID, acc_date = user_getter(USER_NAME)
+    account_created = datetime.datetime.strptime(acc_date, '%Y-%m-%dT%H:%M:%SZ').date()
     formatter('account data', 0)
 
     age_data, age_time = perf_counter(daily_readme, datetime.datetime(2003, 1, 14))
@@ -398,13 +433,12 @@ if __name__ == '__main__':
     formatter('LOC (cached)', loc_time)
 
     commit_data, _ = perf_counter(graph_commits)
-    streak_data, _ = perf_counter(fetch_streak, USER_NAME)
+    streak_data, _ = perf_counter(graph_streak, USER_NAME, account_created)
     rank_data, _ = perf_counter(committers_rank_getter, USER_NAME)
     repo_data, _ = perf_counter(graph_repos_stars, 'repos', ['OWNER'])
     contrib_data, _ = perf_counter(graph_repos_stars, 'repos', ['OWNER', 'COLLABORATOR', 'ORGANIZATION_MEMBER'])
     follower_data, _ = perf_counter(follower_getter, USER_NAME)
 
-    # Prepare comma formatted strings for SVG overwrite
     loc_formatted = [
         '{:,}'.format(total_loc[0]),
         '{:,}'.format(total_loc[1]),
