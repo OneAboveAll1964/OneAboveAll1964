@@ -67,7 +67,7 @@ def graph_contribution_days(username, from_date, to_date):
 
 def contribution_days_desc(username, account_created):
     """Yields (date, contribution count) newest first, back to the signup date."""
-    window_end = datetime.datetime.utcnow().date()
+    window_end = datetime.datetime.now(datetime.timezone.utc).date()
     while window_end >= account_created:
         window_start = max(window_end - datetime.timedelta(days=364), account_created)
         counts = graph_contribution_days(username, window_start, window_end)
