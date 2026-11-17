@@ -25,7 +25,7 @@
     <text x="54" y="81" font-family="Inter" style="font: bold 24px 'Inter', sans-serif; fill: #FFFFFF;" font-weight="bold">SM</text>
 
     <text x="120" y="65" class="title">Shko Maghdid</text>
-    <text x="120" y="90" class="subtitle">Fullstack Engineer @ Lezzoo</text>
+    <text x="120" y="90" class="subtitle">Fullstack Engineer @ Otee</text>
 
 <!--    <text x="50" y="135" class="body-text">Uptime:</text>-->
 <!--    <text x="110" y="135" id="age_data" class="mono">23 years, 1 month, 5 days</text>-->
